@@ -5,9 +5,10 @@ Route::get('/', 'HomeController@index');
 // Movies
 Route::group(['prefix' => 'movies'], function() {
     Route::get('/', 'MovieController@index');
-    Route::get('/{id}','MovieController@show');
     Route::get('/create', 'MovieController@create');
     Route::post('/create', 'MovieController@store');
+    Route::get('/{id}','MovieController@show');
+
 });
 
 // Actors

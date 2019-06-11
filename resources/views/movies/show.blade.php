@@ -6,8 +6,8 @@
     <h4>Fecha de estreno: {{ $movie->release_date }}</h4>
     <h4>Rating: {{ $movie->rating }}</h4>
     <h4>Premios: {{ $movie->awards }}</h4>
-    {{-- <h4>Genero: {{ $movie->genre->name}}</h4> --}}
-    
+    <h4>Genero: {{ $movie->genre->name}}</h4>
+
     {{-- <h4>Actuan (con mas de 7.0 de rating):</h4>
     <ul>
     @foreach ($movie->actorsMinRating7() as $actor)

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Genre;
 
 class GenreController extends Controller
 {
-
     public function index()
     {
-        //
+        return view('genres.index')->with('genres', Genre::all());
     }
 
     public function create()
@@ -24,7 +24,10 @@ class GenreController extends Controller
 
     public function show($id)
     {
-        //
+        $genre = Genre::find($id);
+
+        return view('genres.show')
+            ->with('genre', $genre);
     }
 
     public function edit($id)

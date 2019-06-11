@@ -25,6 +25,10 @@ class ActorController extends Controller
 
     public function show($id)
     {
+
+        dd(Actor::find($id)->movie->title);
+
+
         return view('actors.show')
             ->with('actor', Actor::find($id));
     }
