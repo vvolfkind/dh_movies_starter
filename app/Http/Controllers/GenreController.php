@@ -24,6 +24,9 @@ class GenreController extends Controller
 
     public function show($id)
     {
+
+        dd(Genre::find($id)->caco);
+
         $genre = Genre::find($id);
 
         return view('genres.show')

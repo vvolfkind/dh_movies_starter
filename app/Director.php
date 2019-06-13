@@ -4,13 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Genre extends Model
+class Director extends Model
 {
-    protected $guarded = [];
-
-    public function caco()
+    public function movies()
     {
         return $this->hasMany(Movie::class);
     }
-
 }

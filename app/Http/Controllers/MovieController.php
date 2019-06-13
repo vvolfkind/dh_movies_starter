@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\Genre;
+use App\Director;
 
 class MovieController extends Controller
 {
@@ -58,8 +59,11 @@ class MovieController extends Controller
 
     public function show($id)
     {
+
         $movie = Movie::find($id);
-        
+        $director = Director::find(1);
+        dd($director->movies);
+
         return view('movies.show')->with('movie', $movie);
     }
 

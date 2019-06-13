@@ -27,3 +27,7 @@ Route::group(['prefix' => 'genres'], function() {
     Route::post('/create', 'GenreController@store');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
