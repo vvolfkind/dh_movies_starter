@@ -1,10 +1,6 @@
 <?php
-// Home/Backoffice
-Route::get('/', function () {
-    return view('home');
-});
 
-Route::get('/backoffice', 'BackofficeController@index');
+Route::get('/', 'HomeController@index');
 
 // Actores
 // Ejemplo de agrupacion de rutas con prefix 'actors'
@@ -27,15 +23,18 @@ Route::get('/movies/create', 'MovieController@create');
 Route::post('/movies/create', 'MovieController@store');
 
 Route::get('/movies/{id}', 'MovieController@show');
-Route::get('/movies/{id}/edit', 'MovieController@edit');
-Route::patch('/movies/{id}/edit', 'MovieController@update');
+// Para hacer un UPDATE de un recurso, empezamos como siempre por la ruta
+// En este caso tenemos que pasar un ID de una pelicula ir a buscarla a la DB
+// y asi tener los datos de la misma para cargarlos en el formulario de edicion.
+// Esta es la ruta que devuelve este formulario, pero que tambien trae la pelicula.
+Route::get('/movies/{id}/update', 'MovieController@edit');
+// Esta es la ruta que procesa el formulario de edicion. Fijense que dice PATCH.
+// Tambien podria decir PUT, son lo mismo.
+Route::patch('/movies/{id}/update', 'MovieController@update');
 
 // Genres
 Route::get('/genres', 'GenreController@index');
 Route::get('/genres/{id}/movies', 'GenreController@showMovies');
 Route::get('/genres/{id}', 'GenreController@show');
 
-// Metodo resource, crea todas las rutas siguiendo las convenciones de resource
-// creando tambien un name para cada una
-Route::resource('director', 'DirectorController');
 // Ejecutar php artisan route:list para ver la lista completa de rutas!
