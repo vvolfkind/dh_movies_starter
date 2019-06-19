@@ -76,17 +76,9 @@ class MovieController extends Controller
         //     'genre_id' => $request->input('genero'),
         // ]);
 
-        // Manejo de archivos:
-        $file = $request->poster->store('posters', 'public');
-
-        //Queda activa la manera de crear el nuevo objeto mandando el array completo
-
-        // Metodo mas corto (8/11)
         //Movie::create($request->all());
 
         $movie = new Movie($request->all());
-        // Le asigno el path del archivo al objeto para que luego se inserte en la base de datos
-        $movie->photopath = $file;
 
         $movie->save();
 
@@ -107,9 +99,7 @@ class MovieController extends Controller
         // el metodo edit es la responsabilidad del controlador de mostrar la vista de edicion de un recurso.
         // Para cargar la vista de edicion, en este caso tengo que mandarla con la pelicula (con su ID) y ademas su genero actual buscandolo individualmente ($genre), MAS los posibles generos que puedan llegar a tomar su lugar ($genres)
 
-
         $genres = Genre::all();
-        
 
         $movie = Movie::find($id);
 

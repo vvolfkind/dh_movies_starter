@@ -1,3 +1,3 @@
 <footer class="container">
-    <p>&copy; Rodo 2018</p>
+    <p>&copy; $Rodo 2019</p>
 </footer>
