@@ -16,7 +16,7 @@ Route::group(['prefix' => 'actors'], function() {
 // Movies
 Route::get('/movies', 'MovieController@index');
 // Esta ruta va por get, y apunta al metodo del controlador que va a devolver el form
-Route::get('/movies/create', 'MovieController@create');
+Route::get('/movies/create', 'MovieController@create')->middleware('admin');
 
 // Esta ruta TIENE LA MISMA URL QUE LA ANTERIOR, PERO va por POST, 
 // y apunta al metodo del controlador que va a insertar el recurso en la base de datos
@@ -37,4 +37,9 @@ Route::get('/genres', 'GenreController@index');
 Route::get('/genres/{id}/movies', 'GenreController@showMovies');
 Route::get('/genres/{id}', 'GenreController@show');
 
+
+Auth::routes();
+
 // Ejecutar php artisan route:list para ver la lista completa de rutas!
+
+Route::get('/home', 'HomeController@index')->name('home');

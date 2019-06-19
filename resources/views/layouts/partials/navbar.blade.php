@@ -18,9 +18,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/genres">Peliculas por Genero</a>
                 </li>
+                @if(auth()->user()->role === 9)
                 <li class="nav-item">
                     <a class="nav-link" href="/backoffice">Administrar</a>
                 </li>
+                @endif
             </ul>
             <form class="form-inline my-2 my-lg-0" action="" method="get">
             @csrf

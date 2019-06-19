@@ -20,7 +20,7 @@ class CreateMoviesTable extends Migration
             $table->integer('awards');
             $table->timestamp('release_date');
             $table->integer('length');
-            $table->unsignedInteger('genre_id');
+            $table->unsignedInteger('genre_id')->onDelete()->setNull();
             $table->foreign('genre_id')->references('id')->on('genres');
             $table->string('photopath')->nullable();
             $table->timestamps();
