@@ -16,3 +16,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('movies', function() {
+    return App\Movie::all()->toJson();
+});
+
+Route::get('movies/{id}', function($id) {
+    return App\Movie::find($id)->toJson();
+});
+
+
+
+

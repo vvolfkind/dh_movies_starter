@@ -39,21 +39,26 @@
             <label for="genero">Género</label>
             <select class="form-control" name="genre_id">
                 <option value="" disabled selected>Seleccione genero</option>
-                @foreach($genres as $genre)
-                    @if ($genre->id == old("genre_id"))
-                        <option value="{{ $genre->id }}" selected>
-                        {{ $genre->name }}
-                        </option>
-                    @else
-                        <option value="{{ $genre->id }}">
-                        {{ $genre->name }}
-                        </option>
-                    @endif
-                @endforeach
-            </select>
+            @foreach($genres as $genre)
+            @if ($genre->id == old("genre_id"))
+                <option value="{{ $genre->id }}" selected>
+                {{ $genre->name }}
+                </option>
+            @else
+                <option value="{{ $genre->id }}">
+                {{ $genre->name }}
+                </option>
+            @endif
+            @endforeach
+        </select>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Agregar Película">
+            <label for="poster">Imagen</label>
+            <input class="form-control" type="file" name="poster">
+        </div>
+
+        <div class="form-group">
+            <input type="" class="btn btn-primary" value="Agregar Película" id="addMovie">
         </div>
     </form>
 </div>

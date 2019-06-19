@@ -10,12 +10,17 @@ class Movie extends Model
 
     public function genre()
     {
-        return $this->belongsTo(Genre::class);
+    	return $this->belongsTo(Genre::class);
     }
 
     public function actors()
     {
-        return $this->belongsToMany(Actor::class, 'actor_movie', 'movie_id', 'actor_id');
+    	return $this->belongsToMany(Actor::class);
+    }
+
+    public function sortByTitle()
+    {
+        return $this->orderBy('title');
     }
 
 }

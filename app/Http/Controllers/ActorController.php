@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Actor;
+use App\Movie;
+
 
 class ActorController extends Controller
 {
+
     public function index()
     {
-        return view('actors.index')
-            ->with('actors', Actor::all());
+        $actors = Actor::all();
+        return view('actors.index')->with('actors', $actors);
     }
 
     public function create()
     {
-        //
+        $movies = Movie::all();
+        return view('actors.create')->with('movies', $movies);
     }
 
     public function store(Request $request)
@@ -25,12 +30,8 @@ class ActorController extends Controller
 
     public function show($id)
     {
-
-        dd(Actor::find($id)->movie->title);
-
-
-        return view('actors.show')
-            ->with('actor', Actor::find($id));
+        $actor = Actor::find($id);
+        return view('actors.show')->with('actor', $actor);
     }
 
     public function edit($id)
@@ -47,5 +48,4 @@ class ActorController extends Controller
     {
         //
     }
-
 }

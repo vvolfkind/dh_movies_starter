@@ -8,9 +8,8 @@ class Genre extends Model
 {
     protected $guarded = [];
 
-    public function caco()
+    public function movies()
     {
-        return $this->hasMany(Movie::class);
+    	return $this->hasMany(Movie::class);
     }
-
 }

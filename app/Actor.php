@@ -8,9 +8,13 @@ class Actor extends Model
 {
     protected $guarded = [];
 
-    public function movie()
+    public function fullName()
     {
-        return $this->belongsTo(Movie::class, 'favorite_movie_id');
+    	return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class);
+    }
 }

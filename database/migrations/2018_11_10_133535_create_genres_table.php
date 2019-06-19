@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDirectorIdColumnToMoviesTable extends Migration
+class CreateGenresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddDirectorIdColumnToMoviesTable extends Migration
      */
     public function up()
     {
-        Schema::table('movies', function (Blueprint $table) {
-            $table->bigInteger('director_id')->nullable();
+        Schema::create('genres', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('ranking');
+            $table->boolean('active');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddDirectorIdColumnToMoviesTable extends Migration
      */
     public function down()
     {
-        Schema::table('movies', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('genres');
     }
 }

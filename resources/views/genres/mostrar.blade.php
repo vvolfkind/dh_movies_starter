@@ -1,15 +1,15 @@
-    @extends('layouts.master')
+@extends('layouts.master')
 
-    @section('content')
-
-
-    <h1> {{ $genre->name }}  </h1>
+@section('content')
 
 
-    <ul>
-        @foreach($genre->movies as $movie)
-            <li>{{ $movie->title }}</li>
-        @endforeach
-    </ul>
+	<h1> {{ $genre->name }}  </h1>
 
-    @endsection
+
+	<ul>
+		@foreach($genre->movies as $movie)
+			<li>{{ $movie->title }}</li>
+		@endforeach
+	</ul>
+
+@endsection

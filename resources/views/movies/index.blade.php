@@ -1,6 +1,8 @@
 @extends('layouts.master') 
 @section('content')
+
 <br>
+
 <div class="offset-2 col-6">
     <h1>Listado de Peliculas</h1>
     <br>
@@ -12,6 +14,7 @@
         @endforeach
     </ul>
     <br>
+     {{ $movies->links() }}
 </div>
 
 @endsection
