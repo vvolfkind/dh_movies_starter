@@ -115,22 +115,45 @@ class MovieController extends Controller
 
     public function update(Request $request, $id)
     {
-        //El metodo que realmente va a insertar los datos ACTUALIZADOS en la DB, es este, update.
-        // Inicialmente volvemos a buscarla con Eloquent:
+        // Dejo este dd comentado para ir viendo los cambios!
+        //dd($request->all());
+        // Primero que nada, nos auto-robamos la validacion:
+        $rules = [
+            'title' => 'required',
+            'rating' => 'required',
+            'awards' => 'required',
+            'length' => 'required',
+            'release_date' => 'date|required',
+            'genre_id' => 'required',
+        ];
+        $messages = [
+            'required' => 'el campo :attribute es obligatorio',
+        ];
+        
+        $this->validate($request, $rules, $messages);
+        // La logica de hacer un update es la siguiente:
+        // Tenemos el personaje A, que se llama Request, y el personaje B, que se 
+        // llama Movie.
+        // El personaje Request trae data que puede ser nueva o no, y el personaje Movie
+        // se para adelante y dice "compara con todo lo que tengo yo". Si el valor de un 
+        // campo de Request es igual a lo que ya tiene Movie, no hay cambio. Si es diferente,
+        // Movie atrapa el cambio y lo guarda, borrando el dato que tenia antes.
+        // En codigo:
         $movie = Movie::find($id);
-
-        // Luego  vamos campo por campo asignando el nuevo dato o el que haya quedado en el value
-        $movie->title = $request->input("title");
-        $movie->rating = $request->input("rating");
-        $movie->awards = $request->input("awards");
-        $movie->length = $request->input("length");
-        $movie->release_date = $request->input("release_date");
-        $movie->genre_id = $request->input("genre_id");
-        // Y aca, tambien usamos save(), porque es la misma operacion pero sobre algo que ya existe
-        $movie->save();
-
-        //en este caso, redirigimos al perfil de la pelicula que editamos para observar los cambios
-        return redirect("/movies/$movie->id");
+        // Explicacion con el primer campo/atributo
+         $movie->title = $request->input('title') !== $movie->title ? $request->input('title') : $movie->title;
+         // El titulo va a ser igual a lo que salga de este if ternario.
+         // El if ocurre antes del signo de pregunta, "lo que llega de Request, NO ES igual a lo que movie ya tiene?"
+         // si NO es igual, pone lo que llego, si es igual, queda como esta.
+         $movie->rating = $request->input('rating') !== $movie->rating ? $request->input('rating') : $movie->rating;
+         $movie->awards = $request->input('awards') !== $movie->awards ? $request->input('awards') : $movie->awards;
+         $movie->length = $request->input('length') !== $movie->length ? $request->input('length') : $movie->length;
+         $movie->release_date = $request->input('release_date') !== $movie->release_date ? $request->input('release_date') : $movie->release_date;
+         $movie->genre_id = $request->input('genre_id') !== $movie->genre_id ? $request->input('genre_id') : $movie->genre_id;
+         //una vez que terminamos el proceso anterior, simplemente hacemos:
+         $movie->save();
+         // y vamos a ver los cambios:
+         return redirect("/movies/" . $movie->id);
 
     }
 
