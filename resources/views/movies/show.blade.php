@@ -7,6 +7,13 @@
     <h4>Rating: {{ $movie->rating }}</h4>
     <h4>Premios: {{ $movie->awards }}</h4>
     <h4>Genero: {{ $movie->genre->name}}</h4>
+    @if($movie->photopath !== null)
+    @php
+    $poster = explode('/', $movie->photopath)[1];
+
+    @endphp
+    <img src="/storage/{{ $poster }}" alt="lala">
+    @endif
     
     {{-- <h4>Actuan (con mas de 7.0 de rating):</h4>
     <ul>

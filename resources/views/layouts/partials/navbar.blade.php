@@ -18,9 +18,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/genres">Peliculas por Genero</a>
                 </li>
-                @if(auth()->user()->role === 9)
+
+                @if(auth()->user() && auth()->user()->role === 9)
                 <li class="nav-item">
                     <a class="nav-link" href="/backoffice">Administrar</a>
+                </li>
+                @endif
+                @if(auth()->user())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+                @else
+                <li class="nav-link">
+                    <a href="/login">Login</a>
                 </li>
                 @endif
             </ul>

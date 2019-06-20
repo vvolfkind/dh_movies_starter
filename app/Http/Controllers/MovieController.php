@@ -80,9 +80,13 @@ class MovieController extends Controller
 
         $movie = new Movie($request->all());
 
+        $photopath = $request->file('photopath')->store('public');
+
+        $movie->photopath = $photopath;
+
         $movie->save();
 
-        redirect('/movies');
+        return redirect('/movies');
 
     }
 

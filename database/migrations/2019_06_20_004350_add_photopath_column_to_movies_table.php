@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGenresTable extends Migration
+class AddPhotopathColumnToMoviesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateGenresTable extends Migration
      */
     public function up()
     {
-        Schema::create('genres', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->integer('ranking');
-            $table->boolean('active');
-            $table->timestamps();
+        Schema::table('movies', function (Blueprint $table) {
+            $table->string('photopath')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateGenresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genres');
+        Schema::table('movies', function (Blueprint $table) {
+            $table->dropColumn('photopath');
+        });
     }
 }

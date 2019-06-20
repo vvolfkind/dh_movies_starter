@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', 'HomeController@index');
-
+Route::get('/backoffice', 'BackofficeController@index');
 // Actores
 // Ejemplo de agrupacion de rutas con prefix 'actors'
 Route::group(['prefix' => 'actors'], function() {

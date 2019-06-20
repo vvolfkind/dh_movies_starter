@@ -54,11 +54,11 @@
         </div>
         <div class="form-group">
             <label for="poster">Imagen</label>
-            <input class="form-control" type="file" name="poster">
+            <input class="form-control" type="file" name="photopath">
         </div>
 
         <div class="form-group">
-            <input type="" class="btn btn-primary" value="Agregar Película" id="addMovie">
+            <input type="submit" class="btn btn-primary" value="Agregar Película" id="addMovie">
         </div>
     </form>
 </div>
