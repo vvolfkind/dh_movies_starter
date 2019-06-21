@@ -78,9 +78,9 @@ class MovieController extends Controller
 
         //Movie::create($request->all());
 
+        $photopath = $request->file('photopath')->store('posters', 'public');
+        
         $movie = new Movie($request->all());
-
-        $photopath = $request->file('photopath')->store('public');
 
         $movie->photopath = $photopath;
 
