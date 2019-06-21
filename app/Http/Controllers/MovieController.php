@@ -76,8 +76,6 @@ class MovieController extends Controller
         //     'genre_id' => $request->input('genero'),
         // ]);
 
-        //Movie::create($request->all());
-
         $photopath = $request->file('photopath')->store('posters', 'public');
         
         $movie = new Movie($request->all());
