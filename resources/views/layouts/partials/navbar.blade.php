@@ -40,6 +40,9 @@
                     <a href="/login">Login</a>
                 </li>
                 @endif
+                <li class="nav-link">
+                    <a href="/cart">Carrito ({{ isset(session('cart')['movies']) ? count(session('cart')['movies']) : 0 }})</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="" method="get">
             @csrf

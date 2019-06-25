@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+
+
 Route::get('/', 'HomeController@index');
 Route::get('/backoffice', 'BackofficeController@index');
 // Actores
@@ -37,9 +40,65 @@ Route::get('/genres', 'GenreController@index');
 Route::get('/genres/{id}/movies', 'GenreController@showMovies');
 Route::get('/genres/{id}', 'GenreController@show');
 
-
 Auth::routes();
 
 // Ejecutar php artisan route:list para ver la lista completa de rutas!
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'cart'], function() {
+    Route::get('/', 'CartController@index');
+    Route::get('/add/{movie_id}', 'CartController@add');
+    Route::get('/remove/{movie_id}', 'CartController@remove');
+    Route::get('/checkout', 'CartController@checkout');
+    Route::get('/flush', 'CartController@flush');
+});
+
+
+// Route::get('/attach', function(Request $request) {
+//     // $movie = App\Movie::find(2);
+//     // $actor = App\Actor::find(10);
+
+//     // $movie->actors()->attach($actor->id);
+// // $_SESSION['user'] = 'Rodo';
+//     //dd($request->session()->get('carrito'), session()->get('carrito'));
+
+//     $productos = [
+//         0 =>[
+//             'id' => 43,
+//             'name' => 'Pack Oreo 72u.',
+//             'price' => 3500.67,
+//         ],
+//         1 =>[
+//             'id' => 23,
+//             'name' => 'Empanada Frita Kentucky',
+//             'price' => 55.00,
+//         ]
+//     ];
+
+//     session(['user' => 'Rodo']);
+//     session(['cart' => $productos]);
+
+//     $carrito = session()->get('cart');
+
+//     $total = 0;
+
+//     foreach($carrito as $producto) {
+//         $total = $total + $producto["price"];
+//     }
+
+//     // Transactions
+
+//     // user_id, timestamps, transaction
+
+//     $user_id = $request->user()->id;
+//     $transaction = json_encode($carrito);
+
+//     $transaccion = new Transaction([
+//         'user_id' => $user_id,
+//         'transaction' => $transaction
+//     ]);
+
+//     dd($total);
+
+// });

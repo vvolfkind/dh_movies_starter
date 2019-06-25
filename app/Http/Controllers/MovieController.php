@@ -14,11 +14,9 @@ class MovieController extends Controller
     {
         // el metodo index indexa nuestro recurso, osea lista los elementos del tipo del modelo que 
         // maneja el controlador
-        
         $limit = 10;
-
         // $movies = Movie::paginate($limit);
-        $movies = Movie::make()->sortByTitle()->paginate($limit);
+        $movies = Movie::make()->paginate($limit);
 
         // Metodo de collection para devolver JSON
         // return Movie::all()->toJson();

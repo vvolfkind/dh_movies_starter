@@ -9,8 +9,10 @@
     <ul>
         @foreach($movies as $movie)
         <li>
-            <a href="movies/{{ $movie->id }}">{{ $movie->title }}</a>
+            <a href="movies/{{ $movie->id }}">{{ $movie->title }}</a><br>
+            <a class="btn btn-info" href="/cart/add/{{ $movie->id }}">Agregar</a>
         </li>
+        <br>
         @endforeach
     </ul>
     <br>
